@@ -1,0 +1,41 @@
+{
+  "model_type": "Deep Learning (CNN + BiLSTM)",
+  "training_date": "2025-11-07T15:35:02.475494",
+  "architecture": "Embedding + Conv1D + BiLSTM",
+  "max_url_length": 200,
+  "vocabulary_size": 217,
+  "validation": {
+    "accuracy": 0.9976,
+    "precision": 0.9972022382094324,
+    "recall": 0.998,
+    "f1": 0.9976009596161536,
+    "roc_auc": 0.9999445511111111,
+    "confusion_matrix": [
+      [
+        7479,
+        21
+      ],
+      [
+        15,
+        7485
+      ]
+    ]
+  },
+  "test": {
+    "accuracy": 0.9972,
+    "precision": 0.996802557953637,
+    "recall": 0.9976,
+    "f1": 0.9972011195521792,
+    "roc_auc": 0.9999321066666667,
+    "confusion_matrix": [
+      [
+        7476,
+        24
+      ],
+      [
+        18,
+        7482
+      ]
+    ]
+  }
+}
