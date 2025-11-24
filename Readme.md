@@ -1,13 +1,14 @@
 # 🔒 Phishing Detection System
 
-A machine learning-based system for automatically detecting phishing URLs with explainability and confidence scoring.
+A machine learning-based system for automatically detecting malicious URLs with explainability and confidence scoring.
 
 ## 🎯 Project Overview
 
 This project builds an intelligent system that can automatically detect whether a URL is:
+- **Benign** - Legitimate, safe URLs
+- **Defacement** - Compromised or altered websites
 - **Phishing** - Malicious URLs attempting to steal information
-- **Clean** - Legitimate, safe URLs
-- **Not a Link** - Invalid or non-URL text
+- **Malware** - URLs hosting malicious software
 
 The system leverages supervised machine learning and includes:
 - ✨ **Explainability Module** - Shows why a URL was flagged as suspicious
@@ -132,6 +133,29 @@ WHOIS is a protocol and online service that provides public information about do
 
 ## 🚀 Getting Started
 
+### Option 1: Train on Google Colab (Recommended)
+
+1. **Upload the notebook to Google Colab**
+   - Go to [Google Colab](https://colab.research.google.com/)
+   - Upload `Phishing_Detection_Training_Colab.ipynb`
+
+2. **Upload your dataset**
+   - Upload `data/processed/train.csv`, `validation.csv`, and `test.csv`
+   - Or mount Google Drive if files are large
+
+3. **Run the notebook**
+   - Click **Runtime** → **Run all**
+   - Wait ~5-10 minutes for training
+
+4. **Download the trained model**
+   - Model files will be automatically downloaded
+
+📖 **See [COLAB_USAGE.md](COLAB_USAGE.md) for detailed instructions**
+
+---
+
+### Option 2: Train Locally
+
 ```bash
 # Clone the repository
 git clone https://github.com/ionutT77/PhisingDetectionSystem.git
@@ -142,9 +166,25 @@ cd PhisingDetectionSystem
 # Install dependencies
 pip install -r requirements.txt
 
-# Run the demo
-streamlit run app.py
+# Split the dataset
+python src/data_processing/train_test_split.py
+
+# Train the model
+python train_model_colab.py
 ```
+
+## 📊 Dataset Statistics
+
+- **Total URLs**: 651,191
+- **Train Set**: 520,951 URLs (80%)
+- **Validation Set**: 65,120 URLs (10%)
+- **Test Set**: 65,120 URLs (10%)
+
+**URL Type Distribution**:
+- Benign: ~428,103 URLs (65.7%)
+- Defacement: ~96,457 URLs (14.8%)
+- Phishing: ~94,111 URLs (14.5%)
+- Malware: ~32,520 URLs (5.0%)
 
 ## 📊 Expected Results
 

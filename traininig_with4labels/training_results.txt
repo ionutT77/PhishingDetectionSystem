@@ -1,0 +1,165 @@
+RANDOM FOREST:
+ MODEL EVALUATION ON TEST SET
+============================================================
+[Parallel(n_jobs=2)]: Done  46 tasks      | elapsed:    1.0s
+
+🎯 Test Metrics:
+   Accuracy: 93.87%
+   F1-Score: 0.9351
+
+📋 Classification Report:
+============================================================
+              precision    recall  f1-score   support
+
+      benign       0.93      0.99      0.96     42811
+  defacement       0.95      0.97      0.96      9646
+     malware       0.98      0.89      0.93      3252
+    phishing       0.94      0.68      0.79      9411
+
+    accuracy                           0.94     65120
+   macro avg       0.95      0.88      0.91     65120
+weighted avg       0.94      0.94      0.94     65120
+-----------------------------------------------------------
+ Per-Class Performance:
+============================================================
+   benign         : 99.19% (42,811 samples)
+   defacement     : 97.38% (9,646 samples)
+   malware        : 88.59% (3,252 samples)
+   phishing       : 67.86% (9,411 samples)
+-----------------------------------------------------------
+TEST WIERD
+------------------------------------------------------------
+ TESTING MODEL WITH SAMPLE URLs
+============================================================
+
+🔗 URL: https://www.google.com
+   Prediction: PHISHING
+   Confidence: 88.89%
+   Probabilities:
+      benign         :  2.37%
+      defacement     :  1.03%
+      malware        :  7.72%
+      phishing       : 88.89%
+[Parallel(n_jobs=2)]: Using backend ThreadingBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  46 tasks      | elapsed:    0.0s
+[Parallel(n_jobs=2)]: Done 100 out of 100 | elapsed:    0.1s finished
+[Parallel(n_jobs=2)]: Using backend ThreadingBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  46 tasks      | elapsed:    0.0s
+[Parallel(n_jobs=2)]: Done 100 out of 100 | elapsed:    0.1s finished
+[Parallel(n_jobs=2)]: Using backend ThreadingBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  46 tasks      | elapsed:    0.0s
+[Parallel(n_jobs=2)]: Done 100 out of 100 | elapsed:    0.1s finished
+[Parallel(n_jobs=2)]: Using backend ThreadingBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  46 tasks      | elapsed:    0.0s
+[Parallel(n_jobs=2)]: Done 100 out of 100 | elapsed:    0.1s finished
+[Parallel(n_jobs=2)]: Using backend ThreadingBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  46 tasks      | elapsed:    0.0s
+[Parallel(n_jobs=2)]: Done 100 out of 100 | elapsed:    0.1s finished
+[Parallel(n_jobs=2)]: Using backend ThreadingBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  46 tasks      | elapsed:    0.0s
+
+🔗 URL: http://192.168.1.1/login.php
+   Prediction: PHISHING
+   Confidence: 48.97%
+   Probabilities:
+      benign         :  1.14%
+      defacement     :  2.73%
+      malware        : 47.15%
+      phishing       : 48.97%
+
+🔗 URL: http://paypal-verify-account.tk/signin
+   Prediction: PHISHING
+   Confidence: 47.36%
+   Probabilities:
+      benign         :  7.16%
+      defacement     : 27.07%
+      malware        : 18.41%
+      phishing       : 47.36%
+[Parallel(n_jobs=2)]: Done 100 out of 100 | elapsed:    0.0s finished
+[Parallel(n_jobs=2)]: Using backend ThreadingBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  46 tasks      | elapsed:    0.0s
+[Parallel(n_jobs=2)]: Done 100 out of 100 | elapsed:    0.1s finished
+[Parallel(n_jobs=2)]: Using backend ThreadingBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  46 tasks      | elapsed:    0.0s
+[Parallel(n_jobs=2)]: Done 100 out of 100 | elapsed:    0.0s finished
+[Parallel(n_jobs=2)]: Using backend ThreadingBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  46 tasks      | elapsed:    0.0s
+[Parallel(n_jobs=2)]: Done 100 out of 100 | elapsed:    0.0s finished
+[Parallel(n_jobs=2)]: Using backend ThreadingBackend with 2 concurrent workers.
+
+🔗 URL: https://github.com/ionutT77
+   Prediction: PHISHING
+   Confidence: 94.13%
+   Probabilities:
+      benign         :  1.10%
+      defacement     :  0.03%
+      malware        :  4.74%
+      phishing       : 94.13%
+
+🔗 URL: http://secure-banking-login.xyz/update
+   Prediction: PHISHING
+   Confidence: 51.84%
+   Probabilities:
+      benign         :  8.09%
+      defacement     : 25.38%
+      malware        : 14.70%
+      phishing       : 51.84%
+[Parallel(n_jobs=2)]: Done  46 tasks      | elapsed:    0.0s
+[Parallel(n_jobs=2)]: Done 100 out of 100 | elapsed:    0.1s finished
+
+
+NEURAL NETWORK MODEL:
+
+🚀 TRAINING NEURAL NETWORK - 10 EPOCHS
+============================================================
+
+🎯 Training started with 10 epochs...
+
+Epoch 1/10
+625/625 ━━━━━━━━━━━━━━━━━━━━ 12s 13ms/step - accuracy: 0.8458 - loss: 0.4613 - val_accuracy: 0.9492 - val_loss: 0.1505
+Epoch 2/10
+625/625 ━━━━━━━━━━━━━━━━━━━━ 8s 13ms/step - accuracy: 0.9562 - loss: 0.1349 - val_accuracy: 0.9586 - val_loss: 0.1260
+Epoch 3/10
+625/625 ━━━━━━━━━━━━━━━━━━━━ 6s 10ms/step - accuracy: 0.9686 - loss: 0.0968 - val_accuracy: 0.9639 - val_loss: 0.1140
+Epoch 4/10
+625/625 ━━━━━━━━━━━━━━━━━━━━ 8s 13ms/step - accuracy: 0.9753 - loss: 0.0760 - val_accuracy: 0.9658 - val_loss: 0.1134
+Epoch 5/10
+625/625 ━━━━━━━━━━━━━━━━━━━━ 6s 10ms/step - accuracy: 0.9823 - loss: 0.0580 - val_accuracy: 0.9663 - val_loss: 0.1157
+Epoch 6/10
+625/625 ━━━━━━━━━━━━━━━━━━━━ 8s 13ms/step - accuracy: 0.9864 - loss: 0.0417 - val_accuracy: 0.9660 - val_loss: 0.1182
+Epoch 7/10
+625/625 ━━━━━━━━━━━━━━━━━━━━ 8s 12ms/step - accuracy: 0.9896 - loss: 0.0350 - val_accuracy: 0.9654 - val_loss: 0.1246
+Epoch 8/10
+625/625 ━━━━━━━━━━━━━━━━━━━━ 7s 11ms/step - accuracy: 0.9910 - loss: 0.0278 - val_accuracy: 0.9661 - val_loss: 0.1292
+Epoch 8: early stopping
+Restoring model weights from the end of the best epoch: 5.
+
+✅ Training completed in 70.01 seconds (1.17 minutes)
+
+--------------------------------------------------------------------------------
+
+============================================================
+📈 NEURAL NETWORK - TEST SET EVALUATION
+============================================================
+313/313 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step
+
+🎯 Neural Network Test Metrics:
+   Accuracy: 97.17%
+   F1-Score: 0.9715
+
+📋 Classification Report:
+============================================================
+              precision    recall  f1-score   support
+
+      benign       0.98      0.99      0.98      6574
+  defacement       0.98      0.99      0.98      1481
+     malware       0.98      0.94      0.96       499
+    phishing       0.93      0.89      0.91      1445
+
+    accuracy                           0.97      9999
+   macro avg       0.97      0.95      0.96      9999
+weighted avg       0.97      0.97      0.97      9999
+
+
+
+

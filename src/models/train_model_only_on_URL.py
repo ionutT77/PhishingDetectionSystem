@@ -255,9 +255,9 @@ def main():
     print("\n📥 Loading preprocessed datasets...")
     processed_dir = Path('data/processed')
     
-    train_df = pd.read_csv(processed_dir / 'train_large.csv')
-    val_df = pd.read_csv(processed_dir / 'val_large.csv')
-    test_df = pd.read_csv(processed_dir / 'test_large.csv')
+    train_df = pd.read_csv('train_hard_negatives.csv')
+    val_df = pd.read_csv('val_hard_negatives.csv')
+    test_df = pd.read_csv('test_hard_negatives.csv')
     
     print(f"   Training set:   {len(train_df):,} URLs")
     print(f"   Validation set: {len(val_df):,} URLs")

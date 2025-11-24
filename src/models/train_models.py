@@ -3,6 +3,9 @@ Model Training Module for Phishing Detection
 Trains multiple ML models and evaluates their performance
 """
 
+#train fara featureuri
+#strict URL
+
 import pandas as pd
 import numpy as np
 from pathlib import Path

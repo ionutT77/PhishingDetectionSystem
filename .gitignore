@@ -24,10 +24,13 @@ models/*.h5
 *.pkl
 *.joblib
 
-# Data (can be large)
+# Data (can be large) - EXCLUDE ALL CSV FILES
+# CSV files contain URLs with embedded AWS keys (part of malware URLs)
 data/raw/*.csv
-data/processed/*_large.csv
-data/features/*_large.csv
+data/processed/*.csv
+data/features/*.csv
+data/*.csv
+*.csv
 
 # Keep small sample data
 !data/raw/sample.csv
