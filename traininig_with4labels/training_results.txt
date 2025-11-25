@@ -209,3 +209,5 @@ Works with Mixed Data: Handles both numerical and categorical features
 
 
 lower batchsize- in order to work, slower training
+change test set in order to see if it works on recent links
+than try and new links also to train set
