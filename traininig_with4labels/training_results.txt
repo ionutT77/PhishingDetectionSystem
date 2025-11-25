@@ -15,7 +15,6 @@ RANDOM FOREST:
   defacement       0.95      0.97      0.96      9646
      malware       0.98      0.89      0.93      3252
     phishing       0.94      0.68      0.79      9411
-
     accuracy                           0.94     65120
    macro avg       0.95      0.88      0.91     65120
 weighted avg       0.94      0.94      0.94     65120
@@ -159,7 +158,54 @@ Restoring model weights from the end of the best epoch: 5.
     accuracy                           0.97      9999
    macro avg       0.97      0.95      0.96      9999
 weighted avg       0.97      0.97      0.97      9999
+------------------------------------------------------
+Random Forest Explained
+Random Forest is an ensemble learning algorithm that combines multiple decision trees to make predictions. Think of it as "wisdom of the crowd" applied to machine learning.
+
+Core Concept: Decision Trees First
+Before understanding Random Forest, you need to understand a single Decision Tree:
+
+A decision tree asks a series of yes/no questions about your data
+Each question splits the data based on a feature
+Example for URL classification:
+Does URL contain "login"?
+├─ Yes → Does it have HTTPS?
+│         ├─ Yes → Benign
+│         └─ No → Phishing
+└─ No → Does it have suspicious TLD (.tk, .ml)?
+          ├─ Yes → Malware
+          └─ No → Benign
+Problem with single trees: They tend to overfit—they memorize the training data too well and perform poorly on new data.
+
+How Random Forest Works
+Random Forest solves overfitting by creating many different decision trees and combining their predictions:
+
+1. Bootstrap Aggregating (Bagging)
+Creates multiple training datasets by randomly sampling your original data with replacement
+Each tree trains on a different random subset
+Example: If you have 1000 URLs, each tree might train on a random sample of 1000 URLs (some URLs appear multiple times, others not at all)
+2. Random Feature Selection
+At each split in each tree, only a random subset of features is considered
+This ensures trees are different from each other
+Example: If you have 20 URL features, each split might only consider √20 ≈ 4-5 random features
+3. Voting/Averaging
+Classification (your case): Each tree votes for a class, and the majority wins
+Tree 1: "Phishing"
+Tree 2: "Benign"
+Tree 3: "Phishing"
+Tree 4: "Phishing"
+Final prediction: "Phishing" (3 out of 4 votes)
+Regression: Average the predictions from all trees
+
+--------------------------------------------------------------------------------------
+
+Key Advantages
+Reduces Overfitting: By averaging many trees, random variations cancel out
+Handles Non-linear Relationships: Can capture complex patterns without manual feature engineering
+Feature Importance: Tells you which features matter most (e.g., which URL characteristics best predict phishing)
+Robust to Outliers: A few strange data points won't throw off the entire model
+Works with Mixed Data: Handles both numerical and categorical features
 
 
 
-
+lower batchsize- in order to work, slower training
