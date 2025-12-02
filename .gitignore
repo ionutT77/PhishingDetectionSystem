@@ -63,3 +63,9 @@ logs/
 *.ckpt
 *.pb
 saved_model/
+
+# Additional Project Artifacts
+*.keras
+*.h5
+results_*/
+initial_results_*/
