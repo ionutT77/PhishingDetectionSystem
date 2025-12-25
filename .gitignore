@@ -18,11 +18,11 @@ __pycache__/
 dist/
 build/
 
-# Models (large files)
+# Models (large files) - only ignore in models/ directory, not results_*/
 models/*.keras
 models/*.h5
-*.pkl
-*.joblib
+models/*.pkl
+models/*.joblib
 
 # Data (can be large) - EXCLUDE ALL CSV FILES
 # CSV files contain URLs with embedded AWS keys (part of malware URLs)
@@ -65,7 +65,6 @@ logs/
 saved_model/
 
 # Additional Project Artifacts
-*.keras
-*.h5
-results_*/
-initial_results_*/
+# Ignore old result directories but not the new one
+results_1mil550k_dataset/
+initial_results_first_training_experience/

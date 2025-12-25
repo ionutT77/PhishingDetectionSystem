@@ -1,0 +1,12 @@
+✅ TRAINING COMPLETE!
+======================================================================
+
+📊 Dataset: 2,238,089 URLs (BALANCED)
+📈 Test Accuracy: 0.9223 (92.23%)
+📈 Test F1-Score: 0.9242
+
+📊 Per-Class Performance:
+   benign      : 0.9500 (184,673 samples)
+   defacement  : 0.9949 (14,980 samples)
+   malware     : 0.9276 (7,983 samples)
+   phishing    : 0.8734 (128,083 samples)
