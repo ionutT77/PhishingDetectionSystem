@@ -111,13 +111,13 @@ def main():
     with st.sidebar:
         st.header("ℹ️ About")
         st.info("""
-        This system uses a **Neural Network** trained on 1.5M+ URLs to detect:
+        This system uses a **Neural Network** trained on 2.2M+ URLs to detect:
         - 🟢 **Benign** - Safe URLs
         - 🔴 **Phishing** - Credential theft attempts
         - 🟡 **Malware** - Malicious software distribution
         - 🟠 **Defacement** - Compromised websites
         
-        **Model Accuracy:** 97.0%
+        **Model Accuracy:** 92.23%
         """)
         
         st.header("📊 Model Info")
