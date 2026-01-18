@@ -33,6 +33,38 @@ class PhishingDetector:
             self.model = keras.models.load_model(path)
             print(f"✅ Model loaded from {path}")
         except Exception as e:
+            error_text = str(e)
+
+            # Keras 3 blocks deserializing models that contain Python lambdas (Lambda layers)
+            # unless unsafe deserialization is explicitly enabled.
+            unsafe_deser_markers = (
+                "enable_unsafe_deserialization",
+                "safe_mode",
+                "Lambda layer",
+                "Python lambda",
+                "disallowed by default",
+            )
+
+            if any(marker in error_text for marker in unsafe_deser_markers):
+                try:
+                    if hasattr(keras, "config") and hasattr(keras.config, "enable_unsafe_deserialization"):
+                        keras.config.enable_unsafe_deserialization()
+
+                    try:
+                        self.model = keras.models.load_model(path, safe_mode=False)
+                    except TypeError:
+                        # Older TF/Keras versions don't support safe_mode kwarg
+                        self.model = keras.models.load_model(path)
+
+                    print(
+                        "✅ Model loaded with unsafe deserialization enabled "
+                        "(required for Lambda layers)."
+                    )
+                    return
+                except Exception as retry_error:
+                    print(f"❌ Error loading model (unsafe retry failed): {retry_error}")
+                    raise
+
             print(f"❌ Error loading model: {e}")
             raise
     
