@@ -8,6 +8,10 @@ import os
 import sys
 from pathlib import Path
 
+# Streamlit Cloud is CPU-only; prevent TensorFlow from probing CUDA/GPU drivers.
+os.environ.setdefault("CUDA_VISIBLE_DEVICES", "-1")
+os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "2")
+
 # Add the UI directory to the path
 ui_dir = Path(__file__).parent
 sys.path.insert(0, str(ui_dir))
