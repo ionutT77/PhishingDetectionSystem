@@ -69,10 +69,10 @@ def load_model():
     project_root = ui_folder.parent  # PhisingDetectionSystem folder
     
     # Model path - Updated to 2.2M balanced dataset with Tranco URLs
-    model_path = project_root / "results_2mil238k_dataset" / "best_model.keras"
+    model_path = project_root / "results_2mil238k_dataset_arhitectureV2" / "best_model.keras"
     
     # Character mapping path (for character-level encoding used in training)
-    char_mapping_path = project_root / "results_2mil238k_dataset" / "char_to_idx.pkl"
+    char_mapping_path = project_root / "results_2mil238k_dataset_arhitectureV2" / "char_to_idx.pkl"
     
     # Check if files exist
     if not model_path.exists():
@@ -117,7 +117,7 @@ def main():
         - 🟡 **Malware** - Malicious software distribution
         - 🟠 **Defacement** - Compromised websites
         
-        **Model Accuracy:** 92.23%
+        **Model Accuracy:** 95.72%
         """)
         
         st.header("📊 Model Info")
