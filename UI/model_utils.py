@@ -35,6 +35,10 @@ class PhishingDetector:
             from tensorflow import keras
             print("✅ TensorFlow/Keras imported", flush=True)
 
+            # Register custom layers used by the portable model format.
+            # (Import has side effects: keras.saving.register_keras_serializable)
+            import custom_layers  # noqa: F401
+
             # compile=False avoids deserializing optimizer/loss objects and is often more robust.
             try:
                 self.model = keras.models.load_model(path, compile=False)

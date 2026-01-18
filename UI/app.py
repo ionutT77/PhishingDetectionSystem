@@ -79,7 +79,7 @@ def load_model():
     project_root = ui_folder.parent  # PhisingDetectionSystem folder
     
     # Model path - Updated to 2.2M balanced dataset with Tranco URLs
-    model_path = project_root / "results_2mil238k_dataset_arhitectureV2" / "best_model.keras"
+    model_path = project_root / "results_2mil238k_dataset_arhitectureV2" / "best_model_portable.keras"
     
     # Character mapping path (for character-level encoding used in training)
     char_mapping_path = project_root / "results_2mil238k_dataset_arhitectureV2" / "char_to_idx.pkl"
