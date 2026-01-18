@@ -10,7 +10,7 @@ import tensorflow as tf
 from tensorflow import keras
 
 
-@keras.saving.register_keras_serializable(package="PhishingDetection")
+@keras.utils.register_keras_serializable(package="PhishingDetection")
 class ReduceSum(keras.layers.Layer):
     def __init__(self, axis: int = 1, keepdims: bool = False, **kwargs):
         super().__init__(**kwargs)
