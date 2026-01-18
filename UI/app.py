@@ -7,10 +7,16 @@ import streamlit as st
 import os
 import sys
 from pathlib import Path
+import faulthandler
 
 # Streamlit Cloud is CPU-only; prevent TensorFlow from probing CUDA/GPU drivers.
 os.environ.setdefault("CUDA_VISIBLE_DEVICES", "-1")
 os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "2")
+os.environ.setdefault("TF_ENABLE_ONEDNN_OPTS", "0")
+os.environ.setdefault("TF_XLA_FLAGS", "--tf_xla_auto_jit=0")
+
+# If the process hits a native crash (segfault), dump Python stack traces to logs.
+faulthandler.enable(all_threads=True)
 
 # Add the UI directory to the path
 ui_dir = Path(__file__).parent

@@ -6,6 +6,7 @@ Handles loading and prediction with the trained phishing detection model
 import numpy as np
 import os
 import pickle
+import faulthandler
 
 
 class PhishingDetector:
@@ -29,9 +30,16 @@ class PhishingDetector:
     def load_model(self, path):
         """Load the trained Keras model"""
         try:
+            faulthandler.enable(all_threads=True)
+            print("🔧 Importing TensorFlow/Keras...", flush=True)
             from tensorflow import keras
+            print("✅ TensorFlow/Keras imported", flush=True)
 
-            self.model = keras.models.load_model(path)
+            # compile=False avoids deserializing optimizer/loss objects and is often more robust.
+            try:
+                self.model = keras.models.load_model(path, compile=False)
+            except TypeError:
+                self.model = keras.models.load_model(path)
             print(f"✅ Model loaded from {path}")
         except Exception as e:
             error_text = str(e)
@@ -48,16 +56,19 @@ class PhishingDetector:
 
             if any(marker in error_text for marker in unsafe_deser_markers):
                 try:
+                    faulthandler.enable(all_threads=True)
+                    print("⚠️ Retrying model load with unsafe deserialization...", flush=True)
                     from tensorflow import keras
 
                     if hasattr(keras, "config") and hasattr(keras.config, "enable_unsafe_deserialization"):
                         keras.config.enable_unsafe_deserialization()
 
                     try:
-                        self.model = keras.models.load_model(path, safe_mode=False)
+                        # safe_mode=False is required for Lambda layers saved with Keras 3.
+                        self.model = keras.models.load_model(path, safe_mode=False, compile=False)
                     except TypeError:
                         # Older TF/Keras versions don't support safe_mode kwarg
-                        self.model = keras.models.load_model(path)
+                        self.model = keras.models.load_model(path, compile=False)
 
                     print(
                         "✅ Model loaded with unsafe deserialization enabled "
