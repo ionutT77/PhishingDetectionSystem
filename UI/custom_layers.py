@@ -17,7 +17,9 @@ class ReduceSum(keras.layers.Layer):
         self.axis = axis
         self.keepdims = keepdims
 
-    def call(self, inputs):  # type: ignore[override]
+    def call(self, inputs, mask=None, **kwargs):  # type: ignore[override]
+        # Keras may pass `mask` during graph reconstruction / functional models.
+        # This layer ignores masking and simply reduces the full tensor.
         return tf.reduce_sum(inputs, axis=self.axis, keepdims=self.keepdims)
 
     def compute_output_shape(self, input_shape):  # type: ignore[override]
