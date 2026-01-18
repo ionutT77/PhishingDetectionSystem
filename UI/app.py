@@ -16,8 +16,8 @@ os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "2")
 ui_dir = Path(__file__).parent
 sys.path.insert(0, str(ui_dir))
 
-from model_utils import PhishingDetector
-from explainer import URLExplainer
+# Import heavier modules (TensorFlow, numpy) lazily inside callbacks to keep
+# Streamlit startup stable in constrained environments.
 
 
 # Page configuration
@@ -97,6 +97,7 @@ def load_model():
         return None
     
     try:
+        from model_utils import PhishingDetector
         detector = PhishingDetector(str(model_path), str(char_mapping_path))
         return detector
     except Exception as e:
@@ -125,18 +126,15 @@ def main():
         """)
         
         st.header("📊 Model Info")
-        detector = load_model()
-        if detector:
-            info = detector.get_model_info()
-            st.write(f"**Classes:** {', '.join(info['class_names'])}")
-            st.write(f"**Parameters:** {info['total_params']:,}")
-    
-    # Main content
-    detector = load_model()
-    
-    if detector is None:
-        st.error("⚠️ Could not load the model. Please check the error messages above.")
-        return
+        st.caption("Model loads on first analysis to keep startup fast.")
+        if st.session_state.get("_detector_loaded"):
+            detector = load_model()
+            if detector:
+                info = detector.get_model_info()
+                st.write(f"**Classes:** {', '.join(info['class_names'])}")
+                st.write(f"**Parameters:** {info['total_params']:,}")
+        else:
+            st.write("**Status:** Not loaded yet")
     
     # URL Input
     st.markdown("---")
@@ -155,10 +153,17 @@ def main():
     if analyze_button and url_input:
         with st.spinner("🔄 Analyzing URL..."):
             try:
+                detector = load_model()
+                st.session_state["_detector_loaded"] = True
+                if detector is None:
+                    st.error("⚠️ Could not load the model. Please check the error messages above.")
+                    return
+
                 # Get prediction
                 result = detector.predict(url_input)
                 
                 # Generate explanation
+                from explainer import URLExplainer
                 explainer = URLExplainer()
                 explanation = explainer.generate_explanation(
                     url_input, 
