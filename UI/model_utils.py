@@ -5,7 +5,6 @@ Handles loading and prediction with the trained phishing detection model
 
 import numpy as np
 import os
-from tensorflow import keras
 import pickle
 
 
@@ -30,6 +29,8 @@ class PhishingDetector:
     def load_model(self, path):
         """Load the trained Keras model"""
         try:
+            from tensorflow import keras
+
             self.model = keras.models.load_model(path)
             print(f"✅ Model loaded from {path}")
         except Exception as e:
@@ -47,6 +48,8 @@ class PhishingDetector:
 
             if any(marker in error_text for marker in unsafe_deser_markers):
                 try:
+                    from tensorflow import keras
+
                     if hasattr(keras, "config") and hasattr(keras.config, "enable_unsafe_deserialization"):
                         keras.config.enable_unsafe_deserialization()
 

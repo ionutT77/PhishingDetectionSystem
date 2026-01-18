@@ -8,8 +8,10 @@ streamlit>=1.28.0
 # Use CPU-only TensorFlow on Streamlit to avoid CUDA init/segfault issues.
 tensorflow-cpu==2.20.0
 
-# NumPy 1.x has no cp313 wheels; allow NumPy 2.x.
-numpy>=2.0.0
+# TensorFlow 2.20 is sensitive to major dependency versions.
+# Keep NumPy and Protobuf within known-compatible ranges on Python 3.13.
+numpy>=2.0.0,<2.2.0
+protobuf>=5.28.0,<6.0.0
 
 # URL explanation feature extraction
 tldextract>=3.4.0
