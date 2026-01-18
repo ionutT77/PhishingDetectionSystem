@@ -5,8 +5,8 @@
 streamlit>=1.28.0
 
 # Model inference
-# Streamlit Cloud currently uses Python 3.13; TensorFlow 2.20 provides cp313 wheels.
-tensorflow==2.20.0
+# Use CPU-only TensorFlow on Streamlit to avoid CUDA init/segfault issues.
+tensorflow-cpu==2.20.0
 
 # NumPy 1.x has no cp313 wheels; allow NumPy 2.x.
 numpy>=2.0.0
